@@ -6,13 +6,21 @@ let s:win_id=0
 
 hi! kem_bg ctermbg=30 ctermfg=black
 
+autocmd BufEnter * call s:Enter()
+
+function s:Enter()
+  if s:win_id==win_getid()
+    set nomodifiable
+  else
+    set modifiable
+  endif
+endfunction
+
 function s:CreateWin()
   let s:win_id=nvim_open_win(nvim_create_buf(v:false,v:true),v:true,s:winconf)
   call nvim_win_set_option(s:win_id,"winhighlight","Normal:kem_bg")
-  set modifiable
   call setline(1,s:files)
   set number
-  set nomodifiable
 endfunction
 
 function s:move(filename)
