@@ -52,6 +52,7 @@ endfunction
 
 function kem#add()
   let s:files=add(s:files,bufname())
+  call s:write()
 endfunction
 
 function kem#init(files)
