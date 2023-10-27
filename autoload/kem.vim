@@ -32,6 +32,12 @@ function s:delete(pos)
   endif
 endfunction
 
+function s:open()
+  if len(s:files)>0
+    e s:files[0]
+  endif
+endfunction
+
 function s:close()
   q
   call s:write()
