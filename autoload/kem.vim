@@ -23,9 +23,11 @@ endfunction
 
 function s:delete(pos)
   if s:win_id==win_getid()
-    unlet s:files[a:pos-1]
-    q
-    call kem#move()
+    if len(s:files)>0
+      unlet s:files[a:pos-1]
+      q
+      call kem#move()
+    endif
   endif
 endfunction
 
