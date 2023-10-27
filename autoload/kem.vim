@@ -21,11 +21,18 @@ function s:move(filename)
   endif
 endfunction
 
+function s:delete(pos)
+  if s:win_id==win_getid()
+    unlet s:files[pos-1]
+    d
+  endif
+endfunction
+
 function kem#move()
   call s:CreateWin()
   nnoremap <buffer> <silent> <ENTER> :call <SID>move(getline("."))<CR>
   nnoremap <buffer> <silent> <nowait> g G:call <SID>move(getline("."))<CR>
-  nnoremap <buffer> <silent> <nowait> d :echo "hello"<CR>
+  nnoremap <buffer> <silent> <nowait> d :call <SID>delete(getcurpos()[1])<CR>
 endfunction
 
 function kem#add()
@@ -34,4 +41,8 @@ endfunction
 
 function kem#init(files)
   let s:files=a:files
+endfunction
+
+function kem#load(file)
+  let s:files=readfile(a:file)
 endfunction
