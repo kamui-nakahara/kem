@@ -3,6 +3,7 @@ let s:height=nvim_get_option("lines")
 let s:winconf={"style":"minimal","relative":"editor","width":s:width/2,"height":s:height/2,"row":s:height/4,"col":s:width/4,"focusable":v:false}
 let s:files=[]
 let s:win_id=0
+let s:filename=""
 
 hi! kem_bg ctermbg=30 ctermfg=black
 
@@ -16,7 +17,7 @@ endfunction
 
 function s:move(filename)
   if s:win_id==win_getid()
-    q
+    call s:close()
     execute "e ".a:filename
   endif
 endfunction
@@ -25,9 +26,20 @@ function s:delete(pos)
   if s:win_id==win_getid()
     if len(s:files)>0
       unlet s:files[a:pos-1]
-      q
+      call s:close()
       call kem#move()
     endif
+  endif
+endfunction
+
+function s:close()
+  q
+  call s:write()
+endfunction
+
+function s:write()
+  if s:filename!=""
+    call writefile(s:files,s:filename)
   endif
 endfunction
 
@@ -47,5 +59,6 @@ function kem#init(files)
 endfunction
 
 function kem#load(file)
-  let s:files=readfile(a:file)
+  let s:filename=a:file
+  let s:files=readfile(s:filename)
 endfunction
