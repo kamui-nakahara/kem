@@ -66,6 +66,6 @@ endfunction
 
 function kem#open()
   if len(s:files)>0
-    e s:files[0]
+    execute "e ".s:files[0]
   endif
 endfunction
