@@ -25,6 +25,7 @@ function kem#move()
   call s:CreateWin()
   nnoremap <buffer> <silent> <ENTER> :call <SID>move(getline("."))<CR>
   nnoremap <buffer> <silent> <nowait> g G:call <SID>move(getline("."))<CR>
+  nnoremap <buffer> <silent> <nowait> d :echo "hello"<CR>
 endfunction
 
 function kem#add()
