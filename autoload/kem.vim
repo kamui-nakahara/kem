@@ -23,7 +23,7 @@ endfunction
 
 function s:delete(pos)
   if s:win_id==win_getid()
-    unlet s:files[pos-1]
+    unlet s:files[a:pos-1]
     d
   endif
 endfunction
