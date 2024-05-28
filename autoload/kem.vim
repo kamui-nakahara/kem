@@ -5,7 +5,7 @@ let s:files=[]
 let s:win_id=0
 let s:filename=""
 
-hi! kem_bg ctermbg=32 ctermfg=white
+hi! kem_bg ctermbg=32 ctermfg=white guibg=#0077ff
 
 function s:CreateWin()
   let s:win_id=nvim_open_win(nvim_create_buf(v:false,v:true),v:true,s:winconf)
